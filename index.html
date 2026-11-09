@@ -79,36 +79,16 @@ section{ scroll-margin-top:calc(var(--nav-h) + 24px); }
 /* ============================================================
    02 — ATMOSPHERE
    ============================================================ */
-#stars{
-  position:fixed; inset:0; width:100%; height:100%;
-  z-index:0; pointer-events:none;
+#stars,#stars2{
+  position:fixed; left:0; top:0; z-index:0; pointer-events:none;
+  max-width:none; will-change:transform;
 }
 .aura{
   position:fixed; inset:0; z-index:0; pointer-events:none;
-  overflow:hidden;
+  background:
+    radial-gradient(130% 100% at 62% 46%, rgba(4,5,10,0) 35%, rgba(3,3,8,.60) 100%),
+    linear-gradient(90deg, rgba(4,5,10,.62) 0%, rgba(4,5,10,.18) 46%, rgba(4,5,10,0) 70%);
 }
-.aura span{
-  position:absolute; border-radius:50%; filter:blur(90px); opacity:.42;
-  will-change:transform;
-}
-.aura span:nth-child(1){
-  width:52vw; height:52vw; left:-14vw; top:-16vw;
-  background:radial-gradient(circle at 40% 40%,rgba(240,194,101,.55),transparent 66%);
-  animation:drift1 26s var(--ease-soft) infinite alternate;
-}
-.aura span:nth-child(2){
-  width:44vw; height:44vw; right:-12vw; top:6vw;
-  background:radial-gradient(circle at 55% 45%,rgba(111,91,255,.55),transparent 66%);
-  animation:drift2 32s var(--ease-soft) infinite alternate;
-}
-.aura span:nth-child(3){
-  width:38vw; height:38vw; left:32vw; bottom:-16vw;
-  background:radial-gradient(circle at 50% 50%,rgba(94,224,160,.28),transparent 70%);
-  animation:drift3 36s var(--ease-soft) infinite alternate;
-}
-@keyframes drift1{ to{ transform:translate(9vw,7vw) scale(1.18); } }
-@keyframes drift2{ to{ transform:translate(-8vw,10vw) scale(1.12); } }
-@keyframes drift3{ to{ transform:translate(-6vw,-8vw) scale(1.24); } }
 
 .grain{
   position:fixed; inset:-40%; z-index:9000; pointer-events:none;
@@ -183,6 +163,13 @@ section{ scroll-margin-top:calc(var(--nav-h) + 24px); }
 }
 .brand:hover .brand__mark{ transform:rotate(-12deg) scale(1.06); }
 .brand__mark svg{ width:15px; height:15px; }
+.tsmodal{ position:fixed; inset:0; z-index:13000; display:flex; align-items:center; justify-content:center; padding:20px; background:rgba(3,3,8,.74); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); }
+.tsmodal[hidden]{ display:none; }
+.tsmodal__card{ position:relative; width:min(380px,100%); padding:32px 24px 26px; text-align:center; background:var(--bg-1); border:1px solid var(--line-2); border-radius:20px; box-shadow:0 40px 100px -30px rgba(0,0,0,.9); }
+.tsmodal__card h3{ font-size:1.25rem; margin:0 0 8px; }
+.tsmodal__card p{ color:var(--fg-2); font-size:.92rem; margin:0 0 18px; }
+.tsmodal__box{ display:flex; justify-content:center; min-height:65px; margin-bottom:8px; }
+.tsmodal__x{ position:absolute; top:10px; right:14px; background:none; border:0; color:var(--fg-2); font-size:26px; line-height:1; cursor:pointer; }
 .brand__mark img{ width:100%; height:100%; object-fit:cover; border-radius:inherit; }
 .brand__txt{ display:flex; gap:7px; }
 .brand__txt span:last-child{ color:var(--fg-3); }
@@ -645,7 +632,7 @@ section{ scroll-margin-top:calc(var(--nav-h) + 24px); }
   .gate__ring{ animation:none; background:linear-gradient(120deg,var(--gold),var(--violet)); opacity:.6; }
 }
 @media print{
-  .nav,.grain,.rail,.aura,#stars,.ticker,.gate__ring{ display:none !important; }
+  .nav,.grain,.rail,.aura,#stars,#stars2,.ticker,.gate__ring{ display:none !important; }
   body{ background:#fff; color:#000; }
 }
 </style>
@@ -654,7 +641,7 @@ section{ scroll-margin-top:calc(var(--nav-h) + 24px); }
 <body>
 
 <canvas id="stars" aria-hidden="true"></canvas>
-<div class="aura" aria-hidden="true"><span></span><span></span><span></span></div>
+<div class="aura" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 <div class="rail" id="rail" aria-hidden="true"></div>
 
@@ -760,11 +747,11 @@ section{ scroll-margin-top:calc(var(--nav-h) + 24px); }
           </div>
           <h3>Members only</h3>
           <p>Join the <b>Divine Astra</b> group chat to verify your access. The vault opens automatically once verification completes.</p>
-          <a class="btn btn--gold" id="joinBtn" href="https://t.me/+BOqzf8Luj_o3MTNl" target="_blank" rel="noopener">
+          <a class="btn btn--gold" id="joinBtn" href="#" role="button">
             <span>Join the group chat</span>
             <span class="btn__ico" aria-hidden="true">↗</span>
           </a>
-          <p class="hint">Step 1 of 3 · opens Telegram</p>
+          <p class="hint">Step 1 of 3 · quick security check, then Telegram opens</p>
         </div>
 
         <!-- STAGE 2 -->
@@ -784,7 +771,6 @@ section{ scroll-margin-top:calc(var(--nav-h) + 24px); }
           </div>
           <h3>Verifying membership</h3>
           <p>Keep this tab open. The vault releases automatically when the countdown ends.</p>
-          <div id="tsBox" style="display:flex;justify-content:center;margin:18px 0 0"></div>
           <ul class="log" id="log" aria-live="polite"></ul>
           <p class="hint">Step 2 of 3 · do not refresh</p>
         </div>
@@ -906,6 +892,18 @@ section{ scroll-margin-top:calc(var(--nav-h) + 24px); }
   </div>
 </noscript>
 
+<div class="tsmodal" id="tsModal" role="dialog" aria-modal="true" aria-labelledby="tsTitle" hidden>
+  <div class="tsmodal__card">
+    <button class="tsmodal__x" id="tsClose" type="button" aria-label="Close">&times;</button>
+    <h3 id="tsTitle">Quick security check</h3>
+    <p id="tsMsg">Solve the check to continue to the group chat.</p>
+    <div id="tsBox" class="tsmodal__box"></div>
+    <a class="btn btn--gold" id="tsOpen" href="https://t.me/+BOqzf8Luj_o3MTNl" target="_blank" rel="noopener" hidden>
+      <span>Open the group chat</span><span class="btn__ico" aria-hidden="true">↗</span>
+    </a>
+  </div>
+</div>
+
 <script>
 /* ============================================================
    Divine Astra Vault — runtime
@@ -923,7 +921,7 @@ section{ scroll-margin-top:calc(var(--nav-h) + 24px); }
 
   /* ---------- 01 — config ---------- */
   var JOIN_URL  = 'https://t.me/+BOqzf8Luj_o3MTNl';
-  var TS_SITEKEY = '0x4AAAAAAF5d_fnMsTFpP2jr';   // <-- replace with your Turnstile site key
+  var TS_SITEKEY = 'YOUR_TURNSTILE_SITE_KEY';   // <-- replace with your Turnstile site key
   var DURATION  = 15000;   // 15 seconds
   var CIRC      = 2 * Math.PI * 52;
 
@@ -988,100 +986,211 @@ section{ scroll-margin-top:calc(var(--nav-h) + 24px); }
   var ticker = $('#ticker');
   if (ticker) ticker.innerHTML += ticker.innerHTML;
 
-  /* ---------- 06 — starfield ---------- */
-  (function starfield() {
-    var c = document.getElementById('stars');
-    if (!c) return;
-    var ctx = c.getContext('2d');
-    if (!ctx) return;
+  /* ---------- 06 — deep sky ----------
+     Two pre-rendered layers: a far layer (Milky Way, dust lanes, thousands of faint stars)
+     and a near layer (brighter stars, a few with diffraction spikes). Rendered once,
+     then only moved: a slow drift plus a small scroll parallax. */
+  (function deepSky() {
+    var far = document.getElementById('stars');
+    if (!far) return;
+    var near = document.createElement('canvas');
+    near.id = 'stars2';
+    near.setAttribute('aria-hidden', 'true');
+    far.parentNode.insertBefore(near, far.nextSibling);
 
-    var w = 0, h = 0, dpr = 1, stars = [], shots = [], lastShot = 0;
+    var fctx = far.getContext('2d');
+    var nctx = near.getContext('2d');
+    if (!fctx || !nctx) return;
 
-    function seed() {
-      var count = Math.round(clamp((w * h) / 9500, 60, 220));
-      stars = [];
-      for (var i = 0; i < count; i++) {
-        stars.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          r: Math.random() * 1.4 + 0.35,
-          a: Math.random() * 0.65 + 0.15,
-          sp: Math.random() * 0.1 + 0.015,
-          ph: Math.random() * Math.PI * 2
-        });
-      }
+    var vw = 0, vh = 0, padX = 0, padY = 0, scale = 1;
+
+    /* ----- seeded random + value noise (same sky every visit) ----- */
+    function rng(seed) {
+      return function () {
+        seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+        var t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+      };
+    }
+    var rand = rng(20260911);
+    var P = [], i;
+    for (i = 0; i < 256; i++) P[i] = i;
+    for (i = 255; i > 0; i--) { var j = Math.floor(rand() * (i + 1)); var tmp = P[i]; P[i] = P[j]; P[j] = tmp; }
+    function lat(x, y) { return P[(P[x & 255] + y) & 255] / 255; }
+    function fade(t) { return t * t * t * (t * (t * 6 - 15) + 10); }
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function vnoise(x, y) {
+      var xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi;
+      var u = fade(xf), v = fade(yf);
+      return lerp(lerp(lat(xi, yi), lat(xi + 1, yi), u), lerp(lat(xi, yi + 1), lat(xi + 1, yi + 1), u), v);
+    }
+    function fbm(x, y, o) {
+      var s = 0, a = 0.5, f = 1;
+      for (var k = 0; k < o; k++) { s += a * vnoise(x * f, y * f); f *= 2.03; a *= 0.5; }
+      return s;
+    }
+    function smooth(a, b, x) { var t = clamp((x - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); }
+
+    /* ----- the galactic band: a tilted strip with clumps, a bright bulge and dust lanes ----- */
+    var BAND = Math.cos(-0.56), BANDS = Math.sin(-0.56);
+    var out = { b: 0, core: 0, warm: 0 };
+    function band(u, v, asp) {
+      var x = (u - 0.62) * asp, y = v - 0.36;
+      var tt = x * BAND + y * BANDS;
+      var nn = -x * BANDS + y * BAND;
+      nn += (fbm(x * 1.7 + 3.1, y * 1.7 + 1.7, 3) - 0.5) * 0.30;
+      var sig = 0.13 + 0.05 * Math.exp(-(tt * tt) / 0.45);
+      var core = Math.exp(-(nn * nn) / (2 * sig * sig));
+      var bulge = Math.exp(-((tt + 0.12) * (tt + 0.12)) / 0.10);
+      var cloud = fbm(tt * 2.6 + 11.3, nn * 6.0 + 4.7, 5);
+      var fine = fbm(tt * 7 + 2.2, nn * 16 + 8.8, 4);
+      var lane = smooth(0.50, 0.68, fbm(tt * 3.0 + 40.5, nn * 10 + 13.2, 4));
+      var rift = Math.exp(-((nn - 0.02) * (nn - 0.02)) / (2 * 0.06 * 0.06)) * smooth(0.40, 0.60, fbm(tt * 4 + 70, nn * 12 + 2, 3));
+      var dark = clamp(lane * 0.85 * core + rift * 0.38, 0, 0.92);
+      out.b = core * (0.25 + 0.95 * cloud) * (0.8 + 0.5 * fine) * (1 + 0.9 * bulge) * (1 - dark);
+      out.core = core * (0.35 + cloud) * (1 - dark * 0.7);
+      out.warm = clamp(bulge * 0.9 + (cloud - 0.5) * 0.4, 0, 1);
     }
 
-    function resize() {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = window.innerWidth;
-      h = window.innerHeight;
-      c.width = Math.floor(w * dpr);
-      c.height = Math.floor(h * dpr);
-      c.style.width = w + 'px';
-      c.style.height = h + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      seed();
+    var STAR_RGB = [[178, 196, 255], [240, 244, 255], [255, 238, 205], [255, 205, 160]];
+    function pickTemp() {
+      var r = rand();
+      return r < 0.34 ? 0 : r < 0.70 ? 1 : r < 0.89 ? 2 : 3;
     }
+    function rgba(c, a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
 
-    resize();
-    window.addEventListener('resize', resize);
+    function renderFar(W, H, asp) {
+      far.width = W; far.height = H;
+      fctx.clearRect(0, 0, W, H);
 
-    function paint(t) {
-      ctx.clearRect(0, 0, w, h);
-
-      for (var i = 0; i < stars.length; i++) {
-        var s = stars[i];
-        var tw = 0.55 + 0.45 * Math.sin(t * 0.0012 + s.ph);
-        ctx.globalAlpha = s.a * tw;
-        ctx.fillStyle = i % 11 === 0 ? '#ffdf9e' : '#ffffff';
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fill();
-
-        if (!RM) {
-          s.y += s.sp;
-          if (s.y > h + 4) { s.y = -4; s.x = Math.random() * w; }
+      /* diffuse glow: low-res noise, scaled up smoothly */
+      var gw = 340, gh = Math.max(60, Math.round(gw * H / W));
+      var lo = document.createElement('canvas');
+      lo.width = gw; lo.height = gh;
+      var lctx = lo.getContext('2d');
+      var img = lctx.createImageData(gw, gh);
+      var dens = new Float32Array(gw * gh);
+      var cool = [146, 164, 206], warm = [206, 184, 154];
+      var gx, gy, p;
+      for (gy = 0; gy < gh; gy++) {
+        for (gx = 0; gx < gw; gx++) {
+          band((gx + 0.5) / gw, (gy + 0.5) / gh, asp);
+          p = (gy * gw + gx);
+          dens[p] = out.core;
+          var a = clamp(out.b * 0.50, 0, 0.38);
+          var wm = out.warm * 0.75;
+          img.data[p * 4]     = cool[0] + (warm[0] - cool[0]) * wm;
+          img.data[p * 4 + 1] = cool[1] + (warm[1] - cool[1]) * wm;
+          img.data[p * 4 + 2] = cool[2] + (warm[2] - cool[2]) * wm;
+          img.data[p * 4 + 3] = a * 255;
         }
       }
+      lctx.putImageData(img, 0, 0);
+      fctx.imageSmoothingEnabled = true;
+      fctx.imageSmoothingQuality = 'high';
+      fctx.drawImage(lo, 0, 0, W, H);
 
-      /* shooting stars */
-      if (!RM && t - lastShot > 7200 && Math.random() < 0.012) {
-        lastShot = t;
-        shots.push({
-          x: Math.random() * w * 0.7,
-          y: Math.random() * h * 0.4,
-          len: 120 + Math.random() * 90,
-          vx: 4.5 + Math.random() * 2.5,
-          vy: 1.6 + Math.random() * 1.2,
-          life: 1
-        });
+      /* thousands of faint stars, denser inside the band */
+      var target = Math.round((W * H) / 105), n = 0, tries = 0, pal = STAR_RGB;
+      var fills = pal.map(function (c) { return 'rgb(' + c[0] + ',' + c[1] + ',' + c[2] + ')'; });
+      while (n < target && tries < target * 4) {
+        tries++;
+        var x = rand() * W, y = rand() * H;
+        var d = dens[Math.min(gh - 1, (y / H * gh) | 0) * gw + Math.min(gw - 1, (x / W * gw) | 0)];
+        if (rand() > 0.14 + 0.86 * Math.min(1, d * 1.25)) continue;
+        n++;
+        var big = rand() < 0.07;
+        var sz = Math.max(1, Math.round(scale * (big ? 1.5 : 0.85)));
+        fctx.globalAlpha = (big ? 0.55 : 0.16) + rand() * (big ? 0.35 : 0.5);
+        fctx.fillStyle = fills[pickTemp()];
+        fctx.fillRect(x | 0, y | 0, sz, sz);
       }
-
-      for (var k = shots.length - 1; k >= 0; k--) {
-        var sh = shots[k];
-        var g = ctx.createLinearGradient(sh.x, sh.y, sh.x - sh.len, sh.y - sh.len * 0.35);
-        g.addColorStop(0, 'rgba(255,223,158,' + (0.85 * sh.life) + ')');
-        g.addColorStop(1, 'rgba(255,223,158,0)');
-        ctx.globalAlpha = 1;
-        ctx.strokeStyle = g;
-        ctx.lineWidth = 1.4;
-        ctx.beginPath();
-        ctx.moveTo(sh.x, sh.y);
-        ctx.lineTo(sh.x - sh.len, sh.y - sh.len * 0.35);
-        ctx.stroke();
-
-        sh.x += sh.vx;
-        sh.y += sh.vy;
-        sh.life -= 0.012;
-        if (sh.life <= 0) shots.splice(k, 1);
-      }
-
-      ctx.globalAlpha = 1;
-      requestAnimationFrame(paint);
+      fctx.globalAlpha = 1;
     }
 
-    requestAnimationFrame(paint);
+    function spike(ctx, x, y, len, ang, c, a, lw) {
+      var dx = Math.cos(ang) * len, dy = Math.sin(ang) * len;
+      var g = ctx.createLinearGradient(x, y, x + dx, y + dy);
+      g.addColorStop(0, rgba(c, a)); g.addColorStop(1, rgba(c, 0));
+      ctx.strokeStyle = g; ctx.lineWidth = lw;
+      ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + dx, y + dy); ctx.stroke();
+    }
+
+    function renderNear(W, H) {
+      near.width = W; near.height = H;
+      nctx.clearRect(0, 0, W, H);
+      var count = Math.round(clamp((W * H) / 20000, 45, 130)), k;
+      for (k = 0; k < count; k++) {
+        var x = rand() * W, y = rand() * H;
+        var c = STAR_RGB[pickTemp()];
+        var r = (0.7 + Math.pow(rand(), 3) * 2.0) * scale;
+        var g = nctx.createRadialGradient(x, y, 0, x, y, r * 4.2);
+        g.addColorStop(0, rgba(c, 0.55)); g.addColorStop(1, rgba(c, 0));
+        nctx.fillStyle = g;
+        nctx.beginPath(); nctx.arc(x, y, r * 4.2, 0, Math.PI * 2); nctx.fill();
+        nctx.fillStyle = rgba([255, 255, 255], 0.9);
+        nctx.beginPath(); nctx.arc(x, y, r * 0.55, 0, Math.PI * 2); nctx.fill();
+      }
+      /* a handful of bright stars with diffraction spikes */
+      var bright = 9;
+      for (k = 0; k < bright; k++) {
+        var bx = (0.06 + rand() * 0.88) * W, by = (0.06 + rand() * 0.88) * H;
+        var bc = STAR_RGB[pickTemp()];
+        var br = (1.7 + rand() * 1.5) * scale;
+        var halo = nctx.createRadialGradient(bx, by, 0, bx, by, br * 9);
+        halo.addColorStop(0, rgba(bc, 0.38)); halo.addColorStop(0.35, rgba(bc, 0.08)); halo.addColorStop(1, rgba(bc, 0));
+        nctx.fillStyle = halo;
+        nctx.beginPath(); nctx.arc(bx, by, br * 9, 0, Math.PI * 2); nctx.fill();
+        var len = br * (11 + rand() * 12), rot = rand() * 0.5 - 0.25;
+        for (var q = 0; q < 4; q++) spike(nctx, bx, by, len * (q % 2 ? 0.62 : 1), rot + q * Math.PI / 2, bc, 0.55, Math.max(1, scale * 0.8));
+        nctx.fillStyle = '#ffffff';
+        nctx.beginPath(); nctx.arc(bx, by, br * 0.7, 0, Math.PI * 2); nctx.fill();
+      }
+    }
+
+    function build() {
+      vw = window.innerWidth; vh = window.innerHeight;
+      padX = vw * 0.08; padY = vh * 0.08;
+      var cssW = vw + padX * 2, cssH = vh + padY * 2;
+      scale = Math.min(window.devicePixelRatio || 1, 1.5, Math.sqrt(6e6 / (cssW * cssH)));
+      var W = Math.max(2, Math.round(cssW * scale)), H = Math.max(2, Math.round(cssH * scale));
+      [far, near].forEach(function (c) {
+        c.style.width = cssW + 'px'; c.style.height = cssH + 'px';
+        c.style.left = -padX + 'px'; c.style.top = -padY + 'px';
+      });
+      rand = rng(20260911);                       /* same sky on every build */
+      renderFar(W, H, cssW / cssH);
+      renderNear(W, H);
+      place(performance.now());
+    }
+
+    function place(t) {
+      var dx = 0, dy = 0, sp = 0;
+      if (!RM) {
+        dx = Math.sin(t / 70000) * 0.13 * padY;
+        dy = Math.cos(t / 90000) * 0.13 * padY;
+        var doc = document.documentElement;
+        var span = Math.max(1, doc.scrollHeight - window.innerHeight);
+        sp = clamp((window.scrollY || 0) / span, 0, 1) - 0.5;
+      }
+      far.style.transform  = 'translate3d(' + (dx * 0.7).toFixed(2) + 'px,' + (dy * 0.7 - sp * padY * 0.7).toFixed(2) + 'px,0)';
+      near.style.transform = 'translate3d(' + (dx * 1.3).toFixed(2) + 'px,' + (dy * 1.3 - sp * padY * 1.6).toFixed(2) + 'px,0)';
+    }
+
+    function loop(t) { place(t); requestAnimationFrame(loop); }
+
+    var rt = 0, lastW = window.innerWidth, lastH = window.innerHeight;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt);
+      rt = setTimeout(function () {
+        var w = window.innerWidth, h = window.innerHeight;
+        if (Math.abs(w - lastW) > 40 || Math.abs(h - lastH) > h * 0.3) { lastW = w; lastH = h; build(); }
+      }, 200);
+    });
+
+    build();
+    if (!RM) requestAnimationFrame(loop);
   })();
 
   /* ---------- 07 — gate ---------- */
@@ -1151,10 +1260,19 @@ section{ scroll-margin-top:calc(var(--nav-h) + 24px); }
     setTimeout(function () { burstEl.innerHTML = ''; }, 1400);
   }
 
-  var gateDone = false, tsToken = '', tsWidget = null, unlocking = false, unlockReady = false, unlockFailed = false;
+  var JOIN_URL = 'https://t.me/+BOqzf8Luj_o3MTNl';
+  var gateDone = false, tsError = '', tsToken = '', tsWidget = null, unlocking = false, unlockReady = false;
   var unlockTxt = $('#unlockTxt');
+  var tsModal = $('#tsModal'), tsMsg = $('#tsMsg'), tsOpen = $('#tsOpen'), tsClose = $('#tsClose');
 
   function setUnlockLabel(t) { if (unlockTxt) unlockTxt.textContent = t; }
+  function setMsg(t) { if (tsMsg) tsMsg.textContent = t; }
+
+  function failNow() {
+    if (unlockReady) return;
+    unlocking = false;
+    setUnlockLabel('Failed' + (tsError ? ' (' + tsError + ')' : '') + ' — tap to retry');
+  }
 
   function renderTurnstile() {
     var box = $('#tsBox');
@@ -1163,21 +1281,57 @@ section{ scroll-margin-top:calc(var(--nav-h) + 24px); }
     if (tsWidget !== null) return;
     tsWidget = window.turnstile.render(box, {
       sitekey: TS_SITEKEY,
-      appearance: 'interaction-only',
-      callback: function (t) { tsToken = t; tryUnlock(); },
-      'expired-callback': function () { tsToken = ''; },
-      'error-callback': function () { tsToken = ''; }
+      theme: 'dark',
+      callback: function (t) { tsToken = t; tsError = ''; onSolved(); },
+      'expired-callback': function () {
+        tsToken = '';
+        if (gateDone && !unlockReady && !unlocking) setUnlockLabel('Verify again — tap here');
+      },
+      'error-callback': function (code) {
+        tsToken = ''; tsError = String(code || 'error');
+        if (gateDone) failNow();
+        else setMsg('Check failed (' + tsError + '). Refresh the page and try again.');
+      }
     });
+  }
+
+  function openModal(msg) {
+    if (!tsModal) return;
+    setMsg(msg);
+    if (tsOpen) tsOpen.hidden = true;
+    tsModal.hidden = false;
+    renderTurnstile();
+    if (window.turnstile && tsWidget !== null && !tsToken) { try { window.turnstile.reset(tsWidget); } catch (e) {} }
+  }
+  function closeModal() { if (tsModal) tsModal.hidden = true; }
+
+  function onSolved() {
+    if (gateDone) { closeModal(); tryUnlock(); return; }
+    if (started) return;
+    setMsg('Verified ✓ Opening the group chat…');
+    var w = null;
+    try { w = window.open(JOIN_URL, '_blank'); } catch (e) {}
+    if (w) {
+      try { w.opener = null; } catch (e) {}
+      closeModal();
+      startVerification();
+    } else {
+      /* popup blocked: let the person tap a real link instead */
+      setMsg('Verified ✓ Tap below to open the group chat.');
+      if (tsOpen) tsOpen.hidden = false;
+    }
   }
 
   function tryUnlock() {
     if (!gateDone || !tsToken || unlocking || unlockReady) return;
     unlocking = true;
     setUnlockLabel('Unlocking…');
+    var token = tsToken;
+    tsToken = '';                      /* tokens are single-use */
     fetch('/api/unlock', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ token: tsToken })
+      body: JSON.stringify({ token: token })
     })
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function (d) {
@@ -1187,23 +1341,24 @@ section{ scroll-margin-top:calc(var(--nav-h) + 24px); }
         unlockReady = true;
         setUnlockLabel('Unlock free tools');
       })
-      .catch(function () {
-        unlocking = false; unlockFailed = true; tsToken = '';
-        setUnlockLabel('Failed — tap to retry');
-      });
+      .catch(function () { tsError = 'server'; failNow(); });
   }
 
   if (unlockBtn) {
     unlockBtn.addEventListener('click', function (e) {
       if (unlockReady) return;
       e.preventDefault();
-      if (unlockFailed) location.reload();
+      if (unlocking) return;
+      if (tsToken) { tryUnlock(); return; }
+      /* token expired or used: solve the check again */
+      openModal('Solve the check to unlock the tools.');
     });
   }
 
   function finish() {
     gateDone = true;
-    tryUnlock();
+    if (tsToken) tryUnlock();
+    else setUnlockLabel('Verify again — tap here');
     showStage(3);
     burst();
     if (unlockBtn) {
@@ -1216,7 +1371,6 @@ section{ scroll-margin-top:calc(var(--nav-h) + 24px); }
     started = true;
 
     showStage(2);
-    renderTurnstile();
     writeLog();
 
     var t0 = performance.now();
@@ -1236,11 +1390,21 @@ section{ scroll-margin-top:calc(var(--nav-h) + 24px); }
   }
 
   if (joinBtn) {
-    joinBtn.addEventListener('click', function () {
-      /* let the anchor open Telegram, then begin the wait */
-      setTimeout(startVerification, 60);
+    joinBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (started) return;
+      if (tsToken) { onSolved(); return; }
+      openModal('Solve the check to continue to the group chat.');
     });
   }
+
+  if (tsOpen) {
+    tsOpen.addEventListener('click', function () {
+      setTimeout(function () { closeModal(); startVerification(); }, 60);
+    });
+  }
+  if (tsClose) tsClose.addEventListener('click', closeModal);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
 
   /* ---------- 08 — smooth anchors ---------- */
   $$('a[href^="#"]').forEach(function (a) {
