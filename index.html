@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Divine Astra Vault — Free Tools Access</title>
+<meta name="description" content="Divine Astra Vault — join the group, verify, unlock free tools. Operated by QXCYBER, Empire01Sec, XzarusSec and K3YOFF F4CE." />
+<meta name="theme-color" content="#05050a" />
+<meta property="og:title" content="Divine Astra Vault — Free Tools Access" />
+<meta property="og:description" content="Join the group. Wait 15 seconds. Unlock free tools." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2305050a'/%3E%3Cpath d='M16 6l2.6 6.6L25 15l-6.4 2.4L16 24l-2.6-6.6L7 15l6.4-2.4z' fill='%23f0c265'/%3E%3C/svg%3E" />
+
+<style>
+/* ============================================================
+   00 — TOKENS
+   ============================================================ */
+:root{
+  --bg:#05050a;
+  --bg-1:#0a0a12;
+  --bg-2:#101018;
+  --fg:#f4f2ea;
+  --fg-2:#a8a6b6;
+  --fg-3:#6c6a7a;
+  --line:rgba(255,255,255,.08);
+  --line-2:rgba(255,255,255,.16);
+  --gold:#f0c265;
+  --gold-2:#ffdf9e;
+  --violet:#6f5bff;
+  --green:#5ee0a0;
+  --err:#ff6b6b;
+
+  --ease:cubic-bezier(.16,1,.3,1);
+  --ease-soft:cubic-bezier(.4,0,.2,1);
+
+  --pad:clamp(20px,4.6vw,64px);
+  --nav-h:72px;
+
+  --serif:"Instrument Serif",Georgia,serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,monospace;
+}
+
+/* ============================================================
+   01 — RESET
+   ============================================================ */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+html:focus-within{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--fg);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+  animation:bodyIn .8s var(--ease) both;
+}
+@keyframes bodyIn{ from{ opacity:0; } to{ opacity:1; } }
+body.is-locked{ overflow:hidden; }
+img,svg,canvas{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; }
+ul,ol,dl,dd,figure,blockquote{ margin:0; padding:0; }
+ul,ol{ list-style:none; }
+h1,h2,h3,h4,p{ margin:0; }
+::selection{ background:var(--gold); color:#0a0a12; }
+:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; border-radius:6px; }
+
+section{ scroll-margin-top:calc(var(--nav-h) + 24px); }
+
+/* ============================================================
+   02 — ATMOSPHERE
+   ============================================================ */
+#stars{
+  position:fixed; inset:0; width:100%; height:100%;
+  z-index:0; pointer-events:none;
+}
+.aura{
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  overflow:hidden;
+}
+.aura span{
+  position:absolute; border-radius:50%; filter:blur(90px); opacity:.42;
+  will-change:transform;
+}
+.aura span:nth-child(1){
+  width:52vw; height:52vw; left:-14vw; top:-16vw;
+  background:radial-gradient(circle at 40% 40%,rgba(240,194,101,.55),transparent 66%);
+  animation:drift1 26s var(--ease-soft) infinite alternate;
+}
+.aura span:nth-child(2){
+  width:44vw; height:44vw; right:-12vw; top:6vw;
+  background:radial-gradient(circle at 55% 45%,rgba(111,91,255,.55),transparent 66%);
+  animation:drift2 32s var(--ease-soft) infinite alternate;
+}
+.aura span:nth-child(3){
+  width:38vw; height:38vw; left:32vw; bottom:-16vw;
+  background:radial-gradient(circle at 50% 50%,rgba(94,224,160,.28),transparent 70%);
+  animation:drift3 36s var(--ease-soft) infinite alternate;
+}
+@keyframes drift1{ to{ transform:translate(9vw,7vw) scale(1.18); } }
+@keyframes drift2{ to{ transform:translate(-8vw,10vw) scale(1.12); } }
+@keyframes drift3{ to{ transform:translate(-6vw,-8vw) scale(1.24); } }
+
+.grain{
+  position:fixed; inset:-40%; z-index:9000; pointer-events:none;
+  opacity:.04; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 9s steps(7) infinite;
+}
+@keyframes grain{
+  0%{transform:translate(0,0)} 14%{transform:translate(-2%,1%)} 28%{transform:translate(1%,-2%)}
+  42%{transform:translate(-1%,-1%)} 56%{transform:translate(2%,1%)} 70%{transform:translate(-2%,-1%)}
+  84%{transform:translate(1%,2%)} 100%{transform:translate(0,0)}
+}
+.rail{
+  position:fixed; top:0; left:0; height:2px; width:100%; z-index:8000;
+  transform-origin:0 50%; transform:scaleX(0);
+  background:linear-gradient(90deg,var(--gold),var(--violet));
+}
+
+/* ============================================================
+   03 — TYPE
+   ============================================================ */
+.display{
+  font-family:var(--serif); font-weight:400;
+  font-size:clamp(34px,5.6vw,72px);
+  line-height:.98; letter-spacing:-.025em;
+}
+.display em{ font-style:italic; color:var(--gold); }
+.kicker{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--fg-3);
+}
+.kicker::before{ content:""; width:22px; height:1px; background:var(--line-2); }
+.lede{
+  color:var(--fg-2); font-size:clamp(14.5px,1.15vw,17px);
+  line-height:1.7; max-width:54ch;
+}
+
+/* word reveal */
+.w{ display:inline-block; overflow:hidden; vertical-align:top; }
+.wi{
+  display:inline-block; transform:translateY(115%);
+  transition:transform 1s var(--ease);
+  transition-delay:calc(var(--i) * 22ms);
+}
+.split.is-in .wi{ transform:none; }
+
+/* ============================================================
+   04 — NAV
+   ============================================================ */
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:700;
+  height:var(--nav-h);
+  display:flex; align-items:center; justify-content:space-between;
+  gap:20px; padding:0 var(--pad);
+  border-bottom:1px solid transparent;
+  transition:background .4s var(--ease-soft),border-color .4s,backdrop-filter .4s;
+}
+.nav.is-stuck{
+  background:color-mix(in srgb,var(--bg) 74%,transparent);
+  backdrop-filter:blur(20px) saturate(150%);
+  -webkit-backdrop-filter:blur(20px) saturate(150%);
+  border-bottom-color:var(--line);
+}
+.brand{ display:flex; align-items:center; gap:11px; font-size:14px; font-weight:500; letter-spacing:.02em; }
+.brand__mark{
+  width:30px; height:30px; border-radius:9px; flex:none;
+  display:grid; place-items:center;
+  background:linear-gradient(140deg,var(--gold-2),var(--gold));
+  color:#0a0a12;
+  transition:transform .6s var(--ease);
+}
+.brand:hover .brand__mark{ transform:rotate(-12deg) scale(1.06); }
+.brand__mark svg{ width:15px; height:15px; }
+.brand__mark img{ width:100%; height:100%; object-fit:cover; border-radius:inherit; }
+.brand__txt{ display:flex; gap:7px; }
+.brand__txt span:last-child{ color:var(--fg-3); }
+
+.nav__links{ display:flex; gap:28px; }
+.nav__links a{
+  position:relative; font-size:13px; color:var(--fg-2); transition:color .3s;
+}
+.nav__links a::after{
+  content:""; position:absolute; left:0; bottom:-7px; height:1px; width:100%;
+  background:var(--gold); transform:scaleX(0); transform-origin:right;
+  transition:transform .5s var(--ease);
+}
+.nav__links a:hover{ color:var(--fg); }
+.nav__links a:hover::after{ transform:scaleX(1); transform-origin:left; }
+
+.nav__right{ display:flex; align-items:center; gap:10px; }
+
+.chip-live{
+  display:inline-flex; align-items:center; gap:8px;
+  height:32px; padding:0 13px; border-radius:100px;
+  border:1px solid var(--line); font-family:var(--mono);
+  font-size:9.5px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--fg-2);
+}
+.dot-live{
+  width:6px; height:6px; border-radius:50%; background:var(--green);
+  box-shadow:0 0 0 0 var(--green); animation:live 2.6s infinite;
+}
+@keyframes live{
+  0%{ box-shadow:0 0 0 0 rgba(94,224,160,.55); }
+  70%{ box-shadow:0 0 0 10px transparent; }
+  100%{ box-shadow:0 0 0 0 transparent; }
+}
+
+/* ============================================================
+   05 — BUTTONS
+   ============================================================ */
+.btn{
+  position:relative; display:inline-flex; align-items:center; justify-content:center;
+  gap:11px; height:50px; padding:0 26px; border-radius:100px;
+  font-size:13.5px; font-weight:500; letter-spacing:-.01em;
+  overflow:hidden; isolation:isolate;
+  transition:color .45s var(--ease),border-color .45s,transform .35s var(--ease),box-shadow .45s;
+  will-change:transform;
+}
+.btn::before{
+  content:""; position:absolute; inset:0; z-index:-1; border-radius:inherit;
+  transform:translateY(101%); transition:transform .55s var(--ease);
+}
+.btn--gold{
+  background:linear-gradient(140deg,var(--gold-2),var(--gold));
+  color:#0a0a12;
+  box-shadow:0 14px 40px -18px rgba(240,194,101,.6);
+}
+.btn--gold::before{ background:#fff; }
+.btn--gold:hover{ box-shadow:0 20px 50px -18px rgba(240,194,101,.85); }
+.btn--gold:hover::before{ transform:translateY(0); }
+.btn--line{ border:1px solid var(--line-2); color:var(--fg); }
+.btn--line::before{ background:var(--fg); }
+.btn--line:hover{ color:var(--bg); border-color:var(--fg); }
+.btn--line:hover::before{ transform:translateY(0); }
+.btn--big{ height:60px; padding:0 38px; font-size:14.5px; letter-spacing:.06em; text-transform:uppercase; }
+.btn__ico{ transition:transform .45s var(--ease); font-size:14px; }
+.btn:hover .btn__ico{ transform:translate(3px,-3px); }
+
+/* ============================================================
+   06 — HERO
+   ============================================================ */
+.hero{
+  position:relative; z-index:2;
+  min-height:100svh;
+  display:flex; flex-direction:column; justify-content:center;
+  padding:calc(var(--nav-h) + 48px) var(--pad) 0;
+}
+.hero__inner{ max-width:1000px; }
+
+.hero__badge{
+  display:inline-flex; align-items:center; gap:9px;
+  padding:7px 15px 7px 11px; margin-bottom:clamp(22px,4vh,36px);
+  border:1px solid var(--line); border-radius:100px;
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.15em;
+  text-transform:uppercase; color:var(--fg-2);
+  background:color-mix(in srgb,var(--bg) 55%,transparent);
+  backdrop-filter:blur(10px);
+}
+
+.hero__title{
+  font-family:var(--serif); font-weight:400;
+  font-size:clamp(46px,9vw,132px);
+  line-height:.9; letter-spacing:-.035em;
+  margin-bottom:clamp(22px,3.6vh,34px);
+}
+.hero__title em{ font-style:italic; color:var(--gold); }
+.line{ display:block; overflow:hidden; padding-bottom:.045em; }
+.line__in{
+  display:block; transform:translateY(112%);
+  animation:lineUp 1.25s var(--ease) both;
+}
+.line:nth-child(1) .line__in{ animation-delay:.25s; }
+.line:nth-child(2) .line__in{ animation-delay:.37s; }
+.line:nth-child(3) .line__in{ animation-delay:.49s; }
+@keyframes lineUp{ from{ transform:translateY(112%); } to{ transform:translateY(0); } }
+
+.hero__row{
+  display:flex; flex-wrap:wrap; align-items:flex-end;
+  justify-content:space-between; gap:clamp(24px,4vw,56px);
+}
+.hero__sub{
+  max-width:46ch; color:var(--fg-2);
+  font-size:clamp(14.5px,1.25vw,17.5px); line-height:1.68;
+}
+.hero__sub b{ color:var(--fg); font-weight:500; }
+.hero__cta{ display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+
+.hero__meta{
+  display:grid; gap:16px; min-width:196px;
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.hero__meta div{ display:flex; justify-content:space-between; gap:18px; }
+.hero__meta dt{ color:var(--fg-3); }
+.hero__meta dd{ color:var(--fg-2); }
+
+/* marquee */
+.ticker{
+  position:relative; z-index:2;
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  overflow:hidden; white-space:nowrap; padding:13px 0;
+  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+}
+.ticker__track{
+  display:inline-flex; align-items:center; gap:26px;
+  animation:ticker 32s linear infinite; will-change:transform;
+}
+.ticker__track span{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--fg-3);
+}
+.ticker__track span:nth-child(even){ color:var(--gold); }
+@keyframes ticker{ to{ transform:translateX(-50%); } }
+
+/* ============================================================
+   07 — SECTION SHELL
+   ============================================================ */
+.sec{
+  position:relative; z-index:2;
+  padding:clamp(84px,11vw,150px) var(--pad);
+  border-top:1px solid var(--line);
+}
+.sec__head{
+  display:flex; flex-wrap:wrap; align-items:flex-end;
+  justify-content:space-between; gap:24px;
+  margin-bottom:clamp(40px,6vw,68px);
+}
+.sec__head .lede{ margin-top:18px; }
+
+/* ============================================================
+   08 — GATE
+   ============================================================ */
+.gate{
+  position:relative; max-width:760px; margin:0 auto;
+  border-radius:30px; padding:1.5px; overflow:hidden;
+  isolation:isolate;
+}
+.gate__ring{
+  position:absolute; inset:-60%; z-index:0;
+  background:conic-gradient(from 0deg,
+    transparent 0deg,
+    rgba(240,194,101,.85) 34deg,
+    rgba(111,91,255,.65) 70deg,
+    transparent 120deg,
+    transparent 360deg);
+  animation:rot 9s linear infinite;
+}
+@keyframes rot{ to{ transform:rotate(360deg); } }
+
+.gate__card{
+  position:relative; z-index:1;
+  border-radius:28.5px;
+  background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.012));
+  backdrop-filter:blur(22px) saturate(140%);
+  -webkit-backdrop-filter:blur(22px) saturate(140%);
+  padding:clamp(30px,5vw,58px) clamp(22px,4vw,48px);
+  text-align:center;
+  overflow:hidden;
+}
+.gate__card::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(circle at 50% 0%,rgba(240,194,101,.12),transparent 58%);
+}
+
+/* stages */
+.stage{ display:none; position:relative; z-index:1; }
+.stage.is-on{ display:block; animation:stageIn .75s var(--ease) both; }
+@keyframes stageIn{
+  from{ opacity:0; transform:translateY(16px) scale(.985); }
+  to{ opacity:1; transform:none; }
+}
+.stage h3{
+  font-family:var(--serif); font-weight:400;
+  font-size:clamp(26px,3.4vw,40px); line-height:1;
+  letter-spacing:-.025em; margin:22px 0 12px;
+}
+.stage p{
+  color:var(--fg-2); font-size:14.5px; line-height:1.68;
+  max-width:44ch; margin:0 auto 26px;
+}
+.stage p b{ color:var(--fg); font-weight:500; }
+.hint{
+  margin:20px 0 0 !important;
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--fg-3);
+}
+
+/* lock icon */
+.lock{
+  width:74px; height:74px; margin:0 auto;
+  border-radius:22px; display:grid; place-items:center;
+  border:1px solid var(--line-2);
+  background:radial-gradient(circle at 40% 30%,rgba(240,194,101,.16),transparent 70%);
+  color:var(--gold);
+  animation:breathe 3.6s var(--ease-soft) infinite;
+}
+@keyframes breathe{
+  0%,100%{ transform:translateY(0) scale(1); box-shadow:0 0 0 0 rgba(240,194,101,0); }
+  50%{ transform:translateY(-3px) scale(1.03); box-shadow:0 0 44px -8px rgba(240,194,101,.4); }
+}
+.lock svg{ width:30px; height:30px; }
+
+/* countdown ring */
+.ring{
+  position:relative; width:132px; height:132px; margin:0 auto;
+}
+.ring__svg{ width:100%; height:100%; transform:rotate(-90deg); }
+.ring__track{ fill:none; stroke:rgba(255,255,255,.08); stroke-width:4; }
+.ring__prog{
+  fill:none; stroke:url(#rg); stroke-width:4; stroke-linecap:round;
+  transition:stroke-dashoffset .1s linear;
+}
+.ring__num{
+  position:absolute; inset:0; display:grid; place-items:center;
+  font-family:var(--serif); font-size:44px; line-height:1;
+  letter-spacing:-.03em; color:var(--fg);
+  font-variant-numeric:tabular-nums;
+}
+.ring__num small{
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.2em;
+  color:var(--fg-3); display:block; text-align:center; margin-top:4px;
+}
+
+/* verification log */
+.log{
+  margin:26px auto 0; max-width:400px; text-align:left;
+  display:grid; gap:7px;
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.04em;
+  color:var(--fg-3); min-height:126px;
+}
+.log li{
+  opacity:0; transform:translateY(6px);
+  transition:opacity .4s var(--ease),transform .4s var(--ease);
+  display:flex; gap:9px; align-items:baseline;
+}
+.log li.on{ opacity:1; transform:none; }
+.log li i{ color:var(--gold); font-style:normal; }
+.log li.ok{ color:var(--green); }
+.log li.ok i{ color:var(--green); }
+
+/* unlocked */
+.unlocked{
+  position:relative; width:96px; height:96px; margin:0 auto;
+  border-radius:50%; display:grid; place-items:center;
+  background:radial-gradient(circle at 45% 35%,rgba(94,224,160,.28),rgba(94,224,160,.05) 70%);
+  border:1px solid rgba(94,224,160,.42);
+  color:var(--green);
+  animation:pop .7s var(--ease) both;
+}
+@keyframes pop{
+  0%{ transform:scale(.5); opacity:0; }
+  60%{ transform:scale(1.08); opacity:1; }
+  100%{ transform:scale(1); }
+}
+.unlocked::after{
+  content:""; position:absolute; inset:-1px; border-radius:50%;
+  border:1px solid rgba(94,224,160,.55);
+  animation:halo 2.4s var(--ease-soft) infinite;
+}
+@keyframes halo{
+  0%{ transform:scale(1); opacity:.8; }
+  100%{ transform:scale(1.7); opacity:0; }
+}
+.unlocked svg{ width:38px; height:38px; }
+
+/* particle burst */
+.burst{ position:absolute; inset:0; pointer-events:none; z-index:2; }
+.burst span{
+  position:absolute; left:50%; top:42%;
+  width:6px; height:6px; border-radius:50%;
+  background:var(--gold);
+  animation:burst 1s cubic-bezier(.15,.6,.3,1) forwards;
+}
+@keyframes burst{
+  from{ transform:translate(-50%,-50%) scale(1); opacity:1; }
+  to{ transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(.1); opacity:0; }
+}
+
+/* what's inside */
+.inside{
+  display:grid; gap:14px; margin-top:clamp(36px,5vw,56px);
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  max-width:900px; margin-inline:auto;
+}
+.inside div{
+  padding:20px 22px; border:1px solid var(--line); border-radius:16px;
+  background:linear-gradient(180deg,rgba(255,255,255,.028),transparent);
+  transition:border-color .45s var(--ease-soft),transform .45s var(--ease);
+}
+.inside div:hover{ border-color:rgba(240,194,101,.35); transform:translateY(-3px); }
+.inside b{
+  display:block; font-family:var(--mono); font-size:10px;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--gold);
+  margin-bottom:8px;
+}
+.inside p{ font-size:13px; color:var(--fg-2); line-height:1.6; }
+
+/* ============================================================
+   09 — CREW
+   ============================================================ */
+.crew__grid{
+  display:grid; gap:16px;
+  grid-template-columns:repeat(auto-fit,minmax(238px,1fr));
+}
+.op{
+  position:relative; display:block; overflow:hidden;
+  padding:24px; border:1px solid var(--line); border-radius:20px;
+  background:linear-gradient(180deg,rgba(255,255,255,.032),transparent 70%);
+  transition:border-color .5s var(--ease-soft),transform .5s var(--ease),box-shadow .5s var(--ease);
+}
+.op::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(circle at 20% 0%,rgba(240,194,101,.14),transparent 62%);
+  opacity:0; transition:opacity .5s var(--ease-soft);
+}
+.op:hover{
+  border-color:rgba(240,194,101,.42);
+  transform:translateY(-5px);
+  box-shadow:0 34px 70px -34px rgba(240,194,101,.3);
+}
+.op:hover::before{ opacity:1; }
+
+.op__top{
+  display:flex; align-items:center; justify-content:space-between;
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--fg-3);
+}
+.op__badge{
+  padding:4px 10px; border-radius:100px;
+  border:1px solid var(--line-2); color:var(--fg-2);
+}
+.op[data-role="founder"] .op__badge{
+  border-color:rgba(240,194,101,.5); color:var(--gold);
+  background:rgba(240,194,101,.08);
+}
+.op[data-role="admin"] .op__badge{
+  border-color:rgba(111,91,255,.5); color:#a99cff;
+  background:rgba(111,91,255,.1);
+}
+
+.op__av{
+  width:58px; height:58px; border-radius:50%;
+  display:grid; place-items:center;
+  font-family:var(--serif); font-size:26px; line-height:1;
+  color:#0a0a12; margin:20px 0 16px;
+  background:linear-gradient(140deg,var(--gold-2),var(--gold));
+  transition:transform .6s var(--ease);
+}
+.op[data-role="admin"] .op__av{ background:linear-gradient(140deg,#a99cff,var(--violet)); color:#fff; }
+.op[data-role="member"] .op__av{
+  background:linear-gradient(140deg,rgba(255,255,255,.22),rgba(255,255,255,.08));
+  color:var(--fg); border:1px solid var(--line-2);
+}
+.op:hover .op__av{ transform:rotate(-8deg) scale(1.06); }
+.op__av img{ width:100%; height:100%; object-fit:cover; border-radius:50%; }
+
+.op h3{
+  font-family:var(--serif); font-weight:400; font-size:24px;
+  letter-spacing:-.02em; line-height:1.1; margin-bottom:6px;
+}
+.op__handle{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.1em;
+  color:var(--fg-3);
+}
+.op__go{
+  display:inline-flex; align-items:center; gap:6px;
+  margin-top:18px; font-family:var(--mono); font-size:9.5px;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--fg-3);
+  transition:color .35s,gap .35s var(--ease);
+}
+.op:hover .op__go{ color:var(--gold); gap:10px; }
+
+/* ============================================================
+   10 — FOOTER
+   ============================================================ */
+.foot{
+  position:relative; z-index:2;
+  padding:34px var(--pad) 44px;
+  border-top:1px solid var(--line);
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+  gap:18px;
+  font-family:var(--mono); font-size:10px; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--fg-3);
+}
+.foot nav{ display:flex; flex-wrap:wrap; gap:22px; }
+.foot a{ transition:color .3s; }
+.foot a:hover{ color:var(--gold); }
+
+/* ============================================================
+   11 — REVEAL
+   ============================================================ */
+.rv{
+  opacity:0; transform:translateY(24px);
+  transition:opacity .9s var(--ease),transform .9s var(--ease);
+}
+.rv.is-in{ opacity:1; transform:none; }
+.rv-d1{ transition-delay:.09s; }
+.rv-d2{ transition-delay:.18s; }
+.rv-d3{ transition-delay:.27s; }
+
+/* ============================================================
+   12 — RESPONSIVE
+   ============================================================ */
+@media (max-width:900px){
+  .nav__links{ display:none; }
+  .hero__meta{ display:none; }
+}
+@media (max-width:620px){
+  :root{ --nav-h:64px; }
+  .chip-live{ display:none; }
+  .btn--big{ height:56px; padding:0 24px; font-size:13px; letter-spacing:.04em; }
+  .ring{ width:116px; height:116px; }
+  .ring__num{ font-size:38px; }
+  .foot{ justify-content:flex-start; }
+}
+
+/* ============================================================
+   13 — MOTION PREFS / PRINT
+   ============================================================ */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+  .rv{ opacity:1; transform:none; }
+  .wi{ transform:none; }
+  .line__in{ transform:none; animation:none; }
+  .grain,.aura span{ display:none; }
+  .gate__ring{ animation:none; background:linear-gradient(120deg,var(--gold),var(--violet)); opacity:.6; }
+}
+@media print{
+  .nav,.grain,.rail,.aura,#stars,.ticker,.gate__ring{ display:none !important; }
+  body{ background:#fff; color:#000; }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="stars" aria-hidden="true"></canvas>
+<div class="aura" aria-hidden="true"><span></span><span></span><span></span></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="rail" id="rail" aria-hidden="true"></div>
+
+<a class="skip" href="#vault" style="position:fixed;top:-100px;left:16px;z-index:12000;background:var(--gold);color:#0a0a12;padding:10px 16px;border-radius:8px;font-weight:600;font-size:13px;transition:top .3s" onfocus="this.style.top='16px'" onblur="this.style.top='-100px'">Skip to vault</a>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a class="brand" href="#top">
+    <span class="brand__mark" aria-hidden="true">
+      <img src="https://cdn.corenexis.com/f/oSzZ8uIo.jpg" alt="Divine Astra logo" />
+    </span>
+    <span class="brand__txt"><span>Divine Astra</span><span>/ vault</span></span>
+  </a>
+
+  <nav class="nav__links" aria-label="Primary">
+    <a href="#vault">Vault</a>
+    <a href="#crew">Crew</a>
+    <a href="#about">Operation</a>
+  </nav>
+
+  <div class="nav__right">
+    <span class="chip-live"><span class="dot-live" aria-hidden="true"></span>Vault online</span>
+    <a class="btn btn--line" href="https://t.me/+BOqzf8Luj_o3MTNl" target="_blank" rel="noopener">
+      <span>Join group</span>
+    </a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="hero__inner">
+      <span class="hero__badge"><span class="dot-live" aria-hidden="true"></span>Operation Divine Astra · Access portal</span>
+
+      <h1 class="hero__title">
+        <span class="line"><span class="line__in">The Divine</span></span>
+        <span class="line"><span class="line__in">Astra <em>Vault</em>.</span></span>
+      </h1>
+
+      <div class="hero__row">
+        <div>
+          <p class="hero__sub">
+            Free tools, locked behind one condition: <b>you're in the group.</b>
+            Join the chat, pass the 15-second verification, and the vault
+            hands you the key. No payment. No subscription. Ever.
+          </p>
+          <div class="hero__cta">
+            <a class="btn btn--gold" href="#vault">
+              <span>Enter the vault</span>
+              <span class="btn__ico" aria-hidden="true">↗</span>
+            </a>
+            <a class="btn btn--line" href="https://t.me/+BOqzf8Luj_o3MTNl" target="_blank" rel="noopener">
+              <span>Open group chat</span>
+            </a>
+          </div>
+        </div>
+
+        <dl class="hero__meta">
+          <div><dt>Operators</dt><dd>04</dd></div>
+          <div><dt>Verification</dt><dd>15s</dd></div>
+          <div><dt>Access</dt><dd>Free</dd></div>
+          <div><dt>Status</dt><dd style="color:var(--green)">Online</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track" id="ticker">
+      <span>Free tools</span><span>◆</span>
+      <span>Scripts &amp; configs</span><span>◆</span>
+      <span>Fresh drops</span><span>◆</span>
+      <span>No payment</span><span>◆</span>
+      <span>Members only</span><span>◆</span>
+      <span>Divine Astra</span><span>◆</span>
+    </div>
+  </div>
+
+  <!-- ============ VAULT ============ -->
+  <section class="sec" id="vault">
+    <div class="sec__head">
+      <div>
+        <span class="kicker rv">01 — Access portal</span>
+        <h2 class="display rv rv-d1" style="margin-top:20px">Three steps.<br><em>Then it's yours.</em></h2>
+      </div>
+      <p class="lede rv rv-d2">The vault unlocks for members of the Divine Astra group chat. Verification takes 15 seconds — keep the tab open while it runs.</p>
+    </div>
+
+    <div class="gate" id="gate">
+      <div class="gate__ring" aria-hidden="true"></div>
+      <div class="gate__card">
+        <div class="burst" id="burst" aria-hidden="true"></div>
+
+        <!-- STAGE 1 -->
+        <div class="stage is-on" id="stage1">
+          <div class="lock" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="10.5" width="16" height="10.5" rx="2.6"/>
+              <path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/>
+              <circle cx="12" cy="15.6" r="1.3" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+          <h3>Members only</h3>
+          <p>Join the <b>Divine Astra</b> group chat to verify your access. The vault opens automatically once verification completes.</p>
+          <a class="btn btn--gold" id="joinBtn" href="https://t.me/+BOqzf8Luj_o3MTNl" target="_blank" rel="noopener">
+            <span>Join the group chat</span>
+            <span class="btn__ico" aria-hidden="true">↗</span>
+          </a>
+          <p class="hint">Step 1 of 3 · opens Telegram</p>
+        </div>
+
+        <!-- STAGE 2 -->
+        <div class="stage" id="stage2">
+          <div class="ring">
+            <svg class="ring__svg" viewBox="0 0 120 120" aria-hidden="true">
+              <defs>
+                <linearGradient id="rg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#ffdf9e"/>
+                  <stop offset="1" stop-color="#6f5bff"/>
+                </linearGradient>
+              </defs>
+              <circle class="ring__track" cx="60" cy="60" r="52"/>
+              <circle class="ring__prog" id="ringProg" cx="60" cy="60" r="52" stroke="url(#rg)"/>
+            </svg>
+            <div class="ring__num" id="ringNum" aria-live="polite">15<small>sec</small></div>
+          </div>
+          <h3>Verifying membership</h3>
+          <p>Keep this tab open. The vault releases automatically when the countdown ends.</p>
+          <div id="tsBox" style="display:flex;justify-content:center;margin:18px 0 0"></div>
+          <ul class="log" id="log" aria-live="polite"></ul>
+          <p class="hint">Step 2 of 3 · do not refresh</p>
+        </div>
+
+        <!-- STAGE 3 -->
+        <div class="stage" id="stage3">
+          <div class="unlocked" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="10.5" width="16" height="10.5" rx="2.6"/>
+              <path d="M8 10.5V7.5a4 4 0 0 1 7.4-2"/>
+              <path d="M9.2 15.8l2 2 3.6-3.9"/>
+            </svg>
+          </div>
+          <h3>Vault open</h3>
+          <p>Access granted. Everything inside is free — take what you need, drop a thanks in the group.</p>
+          <a class="btn btn--gold btn--big" id="unlockBtn" href="#" aria-disabled="true" target="_blank" rel="noopener">
+            <span id="unlockTxt">Checking…</span>
+            <span class="btn__ico" aria-hidden="true">↗</span>
+          </a>
+          <p class="hint">Step 3 of 3 · opens the tools channel</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="inside">
+      <div class="rv">
+        <b>Free tools</b>
+        <p>Utilities, scripts and generators posted straight to the channel — no paywall, no license key.</p>
+      </div>
+      <div class="rv rv-d1">
+        <b>Configs &amp; templates</b>
+        <p>Ready-to-run setups you can drop into your own workflow the same day you download them.</p>
+      </div>
+      <div class="rv rv-d2">
+        <b>Fresh drops</b>
+        <p>New releases land in the channel first. Members get them before anyone else sees them.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CREW ============ -->
+  <section class="sec" id="crew">
+    <div class="sec__head">
+      <div>
+        <span class="kicker rv">02 — The operation</span>
+        <h2 class="display rv rv-d1" style="margin-top:20px">Four people<br><em>behind the vault</em></h2>
+      </div>
+      <p class="lede rv rv-d2">Divine Astra is run by four teams. Tap any card to reach them directly on Telegram.</p>
+    </div>
+
+    <div class="crew__grid">
+      <a class="op rv" data-role="founder" href="https://t.me/Qxcyber666" target="_blank" rel="noopener">
+        <div class="op__top"><span>01</span><span class="op__badge">Founder</span></div>
+        <div class="op__av"><img src="https://cdn.corenexis.com/f/CqKKYla9.jpg" alt="QXCYBER logo" /></div>
+        <h3>QXCYBER</h3>
+        <p class="op__handle">@Qxcyber666</p>
+        <span class="op__go">Open profile <span aria-hidden="true">↗</span></span>
+      </a>
+
+      <a class="op rv rv-d1" data-role="admin" href="https://t.me/Empire01Sec" target="_blank" rel="noopener">
+        <div class="op__top"><span>02</span><span class="op__badge">Admin</span></div>
+        <div class="op__av"><img src="https://cdn.corenexis.com/f/p5sU7TeI.jpg" alt="Empire01Sec logo" /></div>
+        <h3>EMPIRE01SEC</h3>
+        <p class="op__handle">@Empire01Sec</p>
+        <span class="op__go">Open profile <span aria-hidden="true">↗</span></span>
+      </a>
+
+      <a class="op rv rv-d2" data-role="member" href="https://t.me/xzarussec" target="_blank" rel="noopener">
+        <div class="op__top"><span>03</span><span class="op__badge">Member</span></div>
+        <div class="op__av"><img src="https://cdn.corenexis.com/f/WJzcByk4.jpg" alt="XzarusSec logo" /></div>
+        <h3>XZARUSSEC</h3>
+        <p class="op__handle">@xzarussec</p>
+        <span class="op__go">Open profile <span aria-hidden="true">↗</span></span>
+      </a>
+
+      <a class="op rv rv-d3" data-role="member" href="https://t.me/K3YOFFF4CE" target="_blank" rel="noopener">
+        <div class="op__top"><span>04</span><span class="op__badge">Member</span></div>
+        <div class="op__av"><img src="https://cdn.corenexis.com/f/V3Y75ygJ.jpg" alt="K3YOFF F4CE logo" /></div>
+        <h3>K3YOFF F4CE</h3>
+        <p class="op__handle">@K3YOFFF4CE</p>
+        <span class="op__go">Open profile <span aria-hidden="true">↗</span></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="sec" id="about">
+    <div style="display:grid;gap:clamp(32px,6vw,80px);grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:start" class="about-grid">
+      <div>
+        <span class="kicker rv">03 — The operation</span>
+        <h2 class="display rv rv-d1" style="margin-top:20px">Built by<br><em>operators</em></h2>
+      </div>
+      <div>
+        <p class="lede split" style="max-width:none">Divine Astra started as a private group of four teams trading tools, configs and hard-won notes. It grew into a public group chat and a channel — same rules, wider door.</p>
+        <p class="lede split" style="max-width:none;margin-top:20px">The vault exists for one reason: to make sure the people downloading the tools are the people in the room. Join the chat, verify, and everything on the other side is free.</p>
+        <div style="margin-top:34px;display:flex;flex-wrap:wrap;gap:12px">
+          <a class="btn btn--gold rv" href="https://t.me/+BOqzf8Luj_o3MTNl" target="_blank" rel="noopener">
+            <span>Join the group</span><span class="btn__ico" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>© <span id="year"></span> Divine Astra — operated by QXCYBER, Empire01Sec, XzarusSec, K3YOFF F4CE</span>
+  <nav aria-label="Footer">
+    <a href="https://t.me/+BOqzf8Luj_o3MTNl" target="_blank" rel="noopener">Group chat</a>
+    <a href="#vault">Vault</a>
+    <a href="#crew">Crew</a>
+  </nav>
+</footer>
+
+<noscript>
+  <div style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#0a0a12;border-top:1px solid rgba(255,255,255,.16);padding:16px 20px;font-family:monospace;font-size:12px;color:#f4f2ea;text-align:center">
+    JavaScript is required to verify access.
+    <a href="https://t.me/+BOqzf8Luj_o3MTNl" style="color:#f0c265;text-decoration:underline">Join the group</a>
+  </div>
+</noscript>
+
+<script>
+/* ============================================================
+   Divine Astra Vault — runtime
+   Zero dependencies.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var FINE = window.matchMedia('(pointer: fine)').matches;
+
+  function $(s, c) { return (c || document).querySelector(s); }
+  function $$(s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); }
+  function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
+
+  /* ---------- 01 — config ---------- */
+  var JOIN_URL  = 'https://t.me/+BOqzf8Luj_o3MTNl';
+  var TS_SITEKEY = '0x4AAAAAAF5d_fnMsTFpP2jr';   // <-- replace with your Turnstile site key
+  var DURATION  = 15000;   // 15 seconds
+  var CIRC      = 2 * Math.PI * 52;
+
+  /* ---------- 02 — year ---------- */
+  var yEl = $('#year');
+  if (yEl) yEl.textContent = new Date().getFullYear();
+
+  /* ---------- 03 — scroll rail + nav ---------- */
+  var nav = $('#nav');
+  var rail = $('#rail');
+
+  function onScroll() {
+    var y = window.scrollY;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    if (rail) rail.style.transform = 'scaleX(' + (max > 0 ? y / max : 0) + ')';
+    if (nav) nav.classList.toggle('is-stuck', y > 20);
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { onScroll(); ticking = false; });
+  }, { passive: true });
+  onScroll();
+
+  /* ---------- 04 — reveal ---------- */
+  function splitWords(el) {
+    if (el.dataset.split === '1') return;
+    el.dataset.split = '1';
+    var text = el.textContent.replace(/\s+/g, ' ').trim();
+    el.textContent = '';
+    text.split(' ').forEach(function (word, i) {
+      var outer = document.createElement('span');
+      outer.className = 'w';
+      var inner = document.createElement('span');
+      inner.className = 'wi';
+      inner.textContent = word;
+      inner.style.setProperty('--i', i);
+      outer.appendChild(inner);
+      el.appendChild(outer);
+      el.appendChild(document.createTextNode(' '));
+    });
+  }
+
+  $$('.split').forEach(splitWords);
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('is-in');
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
+    $$('.rv, .split').forEach(function (el) { io.observe(el); });
+  } else {
+    $$('.rv, .split').forEach(function (el) { el.classList.add('is-in'); });
+  }
+
+  /* ---------- 05 — ticker ---------- */
+  var ticker = $('#ticker');
+  if (ticker) ticker.innerHTML += ticker.innerHTML;
+
+  /* ---------- 06 — starfield ---------- */
+  (function starfield() {
+    var c = document.getElementById('stars');
+    if (!c) return;
+    var ctx = c.getContext('2d');
+    if (!ctx) return;
+
+    var w = 0, h = 0, dpr = 1, stars = [], shots = [], lastShot = 0;
+
+    function seed() {
+      var count = Math.round(clamp((w * h) / 9500, 60, 220));
+      stars = [];
+      for (var i = 0; i < count; i++) {
+        stars.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 1.4 + 0.35,
+          a: Math.random() * 0.65 + 0.15,
+          sp: Math.random() * 0.1 + 0.015,
+          ph: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = window.innerWidth;
+      h = window.innerHeight;
+      c.width = Math.floor(w * dpr);
+      c.height = Math.floor(h * dpr);
+      c.style.width = w + 'px';
+      c.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      seed();
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+
+    function paint(t) {
+      ctx.clearRect(0, 0, w, h);
+
+      for (var i = 0; i < stars.length; i++) {
+        var s = stars[i];
+        var tw = 0.55 + 0.45 * Math.sin(t * 0.0012 + s.ph);
+        ctx.globalAlpha = s.a * tw;
+        ctx.fillStyle = i % 11 === 0 ? '#ffdf9e' : '#ffffff';
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+
+        if (!RM) {
+          s.y += s.sp;
+          if (s.y > h + 4) { s.y = -4; s.x = Math.random() * w; }
+        }
+      }
+
+      /* shooting stars */
+      if (!RM && t - lastShot > 7200 && Math.random() < 0.012) {
+        lastShot = t;
+        shots.push({
+          x: Math.random() * w * 0.7,
+          y: Math.random() * h * 0.4,
+          len: 120 + Math.random() * 90,
+          vx: 4.5 + Math.random() * 2.5,
+          vy: 1.6 + Math.random() * 1.2,
+          life: 1
+        });
+      }
+
+      for (var k = shots.length - 1; k >= 0; k--) {
+        var sh = shots[k];
+        var g = ctx.createLinearGradient(sh.x, sh.y, sh.x - sh.len, sh.y - sh.len * 0.35);
+        g.addColorStop(0, 'rgba(255,223,158,' + (0.85 * sh.life) + ')');
+        g.addColorStop(1, 'rgba(255,223,158,0)');
+        ctx.globalAlpha = 1;
+        ctx.strokeStyle = g;
+        ctx.lineWidth = 1.4;
+        ctx.beginPath();
+        ctx.moveTo(sh.x, sh.y);
+        ctx.lineTo(sh.x - sh.len, sh.y - sh.len * 0.35);
+        ctx.stroke();
+
+        sh.x += sh.vx;
+        sh.y += sh.vy;
+        sh.life -= 0.012;
+        if (sh.life <= 0) shots.splice(k, 1);
+      }
+
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(paint);
+    }
+
+    requestAnimationFrame(paint);
+  })();
+
+  /* ---------- 07 — gate ---------- */
+  var stage1 = $('#stage1');
+  var stage2 = $('#stage2');
+  var stage3 = $('#stage3');
+  var joinBtn = $('#joinBtn');
+  var unlockBtn = $('#unlockBtn');
+  var ringProg = $('#ringProg');
+  var ringNum = $('#ringNum');
+  var logEl = $('#log');
+  var burstEl = $('#burst');
+  var gateCard = $('.gate__card');
+
+  var started = false;
+
+  if (ringProg) {
+    ringProg.style.strokeDasharray = CIRC;
+    ringProg.style.strokeDashoffset = CIRC;
+  }
+
+  function showStage(n) {
+    [stage1, stage2, stage3].forEach(function (el, i) {
+      if (!el) return;
+      el.classList.toggle('is-on', i + 1 === n);
+    });
+  }
+
+  var LOG_STEPS = [
+    { t: 200,    txt: 'Establishing secure channel' },
+    { t: 1800,   txt: 'Reading membership token' },
+    { t: 4200,   txt: 'Cross-checking Divine Astra roster' },
+    { t: 6600,   txt: 'Signature valid — tier PUBLIC-FREE', ok: true },
+    { t: 9400,   txt: 'Releasing vault bolts' },
+    { t: 12200,  txt: 'Access granted', ok: true }
+  ];
+
+  function writeLog() {
+    if (!logEl) return;
+    logEl.innerHTML = '';
+    LOG_STEPS.forEach(function (step) {
+      setTimeout(function () {
+        var li = document.createElement('li');
+        if (step.ok) li.className = 'ok';
+        li.innerHTML = '<i>' + (step.ok ? '✓' : '›') + '</i><span>' + step.txt + '</span>';
+        logEl.appendChild(li);
+        requestAnimationFrame(function () { li.classList.add('on'); });
+      }, step.t);
+    });
+  }
+
+  function burst() {
+    if (!burstEl || RM) return;
+    burstEl.innerHTML = '';
+    var n = 34;
+    for (var i = 0; i < n; i++) {
+      var p = document.createElement('span');
+      var ang = (Math.PI * 2 * i) / n + Math.random() * 0.35;
+      var dist = 90 + Math.random() * 190;
+      p.style.setProperty('--x', Math.cos(ang) * dist + 'px');
+      p.style.setProperty('--y', Math.sin(ang) * dist + 'px');
+      p.style.background = i % 4 === 0 ? '#6f5bff' : (i % 3 === 0 ? '#5ee0a0' : '#f0c265');
+      p.style.animationDelay = (Math.random() * 0.12) + 's';
+      p.style.width = p.style.height = (3 + Math.random() * 5) + 'px';
+      burstEl.appendChild(p);
+    }
+    setTimeout(function () { burstEl.innerHTML = ''; }, 1400);
+  }
+
+  var gateDone = false, tsToken = '', tsWidget = null, unlocking = false, unlockReady = false, unlockFailed = false;
+  var unlockTxt = $('#unlockTxt');
+
+  function setUnlockLabel(t) { if (unlockTxt) unlockTxt.textContent = t; }
+
+  function renderTurnstile() {
+    var box = $('#tsBox');
+    if (!box) return;
+    if (!window.turnstile) { setTimeout(renderTurnstile, 300); return; }
+    if (tsWidget !== null) return;
+    tsWidget = window.turnstile.render(box, {
+      sitekey: TS_SITEKEY,
+      appearance: 'interaction-only',
+      callback: function (t) { tsToken = t; tryUnlock(); },
+      'expired-callback': function () { tsToken = ''; },
+      'error-callback': function () { tsToken = ''; }
+    });
+  }
+
+  function tryUnlock() {
+    if (!gateDone || !tsToken || unlocking || unlockReady) return;
+    unlocking = true;
+    setUnlockLabel('Unlocking…');
+    fetch('/api/unlock', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: tsToken })
+    })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (d) {
+        if (!d || !d.url) throw new Error('no url');
+        unlockBtn.href = d.url;
+        unlockBtn.setAttribute('aria-disabled', 'false');
+        unlockReady = true;
+        setUnlockLabel('Unlock free tools');
+      })
+      .catch(function () {
+        unlocking = false; unlockFailed = true; tsToken = '';
+        setUnlockLabel('Failed — tap to retry');
+      });
+  }
+
+  if (unlockBtn) {
+    unlockBtn.addEventListener('click', function (e) {
+      if (unlockReady) return;
+      e.preventDefault();
+      if (unlockFailed) location.reload();
+    });
+  }
+
+  function finish() {
+    gateDone = true;
+    tryUnlock();
+    showStage(3);
+    burst();
+    if (unlockBtn) {
+      setTimeout(function () { unlockBtn.focus({ preventScroll: true }); }, 420);
+    }
+  }
+
+  function startVerification() {
+    if (started) return;
+    started = true;
+
+    showStage(2);
+    renderTurnstile();
+    writeLog();
+
+    var t0 = performance.now();
+
+    (function frame(now) {
+      var k = clamp((now - t0) / DURATION, 0, 1);
+
+      if (ringProg) ringProg.style.strokeDashoffset = CIRC * (1 - k);
+      if (ringNum) {
+        var left = Math.ceil((1 - k) * (DURATION / 1000));
+        ringNum.innerHTML = left + '<small>sec</small>';
+      }
+
+      if (k < 1) requestAnimationFrame(frame);
+      else finish();
+    })(t0);
+  }
+
+  if (joinBtn) {
+    joinBtn.addEventListener('click', function () {
+      /* let the anchor open Telegram, then begin the wait */
+      setTimeout(startVerification, 60);
+    });
+  }
+
+  /* ---------- 08 — smooth anchors ---------- */
+  $$('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var href = a.getAttribute('href');
+      if (!href || href === '#') return;
+      var target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      var top = target.getBoundingClientRect().top + window.scrollY - 82;
+      window.scrollTo({ top: top, behavior: RM ? 'auto' : 'smooth' });
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
