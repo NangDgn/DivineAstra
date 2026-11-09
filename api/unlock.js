@@ -1,19 +1,15 @@
-// Vercel Serverless Function: POST /api/unlock
-// Verifies the Turnstile token server-side, then returns the tools link.
-// Environment variables (set in Vercel, never in code): TURNSTILE_SECRET, TOOLS_URL
+// Vercel Serverless Function: POST /api/unlock  (CommonJS, works with or without a package.json)
+// Environment variables: TURNSTILE_SECRET, TOOLS_URL
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
 
   if (req.method !== 'POST') return res.status(405).json({ error: 'method not allowed' });
 
-  // Only accept requests coming from your own site
   const origin = req.headers.origin;
   if (origin) {
     try {
-      if (new URL(origin).host !== req.headers.host) {
-        return res.status(403).json({ error: 'forbidden' });
-      }
+      if (new URL(origin).host !== req.headers.host) return res.status(403).json({ error: 'forbidden' });
     } catch (_) {
       return res.status(403).json({ error: 'forbidden' });
     }
@@ -42,4 +38,4 @@ export default async function handler(req, res) {
 
   if (!check.success) return res.status(403).json({ error: 'verification failed' });
   return res.status(200).json({ url: process.env.TOOLS_URL });
-}
+};

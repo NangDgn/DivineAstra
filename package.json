@@ -1,0 +1,9 @@
+{
+  "name": "divine-astra-vault",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Divine Astra vault: static page plus a Turnstile-checked /api/unlock endpoint",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
